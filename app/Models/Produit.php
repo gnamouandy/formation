@@ -17,7 +17,8 @@ class Produit extends Model
           'prix', 
           'pays_source', 
           'poids', 
-          'like'
+          'like',
+          'image',
     ];
     public function commande()
     {

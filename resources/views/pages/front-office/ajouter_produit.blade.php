@@ -1,4 +1,7 @@
 <x-master-layout>
+    @if (!session('produitajout'))
+        {{session('produitajout')}}
+    @endif
     <div class="container">
         <div class="row">
                         <div class="col-md-6 offset-md-3">
@@ -7,7 +10,7 @@
                 <h5 class="text-center"> Ajout d'un nouveau produit </h5>
                 <br>
 
-                    <form action="{{ route('produit.enregistrer') }}" method="post">
+                    <form action="{{ route('produit.enregistrer') }}" method="post" enctype="multipart/form-data">
                         @method("POST")
                         @csrf
                         

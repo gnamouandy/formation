@@ -134,8 +134,8 @@ public function ajouterProduit()
 
 public function enregistrerProduit(Request $request)
 {
-   // dd('ok');
-   $produit=produit::create([
+   $image=$request->file("image")->store("images");
+   $produit= Produit::create([
        'uuid'=>Str::uuid(),
        'designation'=>$request->designation,
        'description'=>$request->description,
@@ -143,12 +143,14 @@ public function enregistrerProduit(Request $request)
        'like'=>$request->like,
        'pays_source'=>$request->pays_source,
        'poids'=>$request->poids,
+       'image'=>$image
       
    ]);
    $user=User::first();
-   Mail::to($user)->send(new Produit_mail($produit));
-   Notification::send($user, new Nouveauproduitnotification($produit));
+  // Mail::to($user)->send(new Produit_mail($produit));
+  // Notification::send($user, new Nouveauproduitnotification($produit));
 //dd($produit);
+return redirect()->back()->with('produitajout','commande ajoutée avec succès'); 
 }
 
 public function editerProduit($id)
